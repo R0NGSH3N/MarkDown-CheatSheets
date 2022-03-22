@@ -25,6 +25,9 @@ public class MDTokens {
     public static final String ROW = "  ";
     public static final String TABLE_COL = "|";
 
+    public static final Character CHEAT_SHEET_HEADLINE = '#';
+    public static final String BLOCK_HEADLINE = "##";
+
     /*
      *
      *
