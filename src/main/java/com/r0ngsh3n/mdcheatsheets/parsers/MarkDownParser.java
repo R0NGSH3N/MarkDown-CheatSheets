@@ -5,7 +5,7 @@ import com.r0ngsh3n.mdcheatsheets.models.Block;
 import com.r0ngsh3n.mdcheatsheets.models.CheatSheet;
 import com.r0ngsh3n.mdcheatsheets.models.MDTokens;
 import com.r0ngsh3n.mdcheatsheets.utils.StringTools;
-import org.springframework.util.CollectionUtils;
+import org.apache.commons.collections4.CollectionUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -67,16 +67,11 @@ public class MarkDownParser {
         }
 
         List<Block> blocks = parseBlocks(rawTextList);
-        blocks.parallelStream().forEach(block -> {
+        blocks.parallelStream().forEach(Block::transform);
 
-        });
+        cheatSheet.setBlocks(blocks);
 
-
-
-
-
-
-        return null;
+        return cheatSheet;
 
     }
 
