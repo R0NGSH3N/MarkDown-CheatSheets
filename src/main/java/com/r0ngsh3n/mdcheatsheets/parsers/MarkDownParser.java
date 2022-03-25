@@ -68,7 +68,6 @@ public class MarkDownParser {
 
         List<Block> blocks = parseBlocks(rawTextList);
         blocks.parallelStream().forEach(Block::transform);
-
         cheatSheet.setBlocks(blocks);
 
         return cheatSheet;

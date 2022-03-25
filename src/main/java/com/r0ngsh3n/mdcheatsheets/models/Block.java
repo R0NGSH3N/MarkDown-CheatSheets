@@ -6,6 +6,7 @@ import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 
 @Getter
 @Setter
@@ -39,7 +40,7 @@ public class Block {
         return null;
     }
 
-    public String relaceTable(List<String> tableText) {
+    public String replaceTable(List<String> tableText) {
         return null;
     }
 
@@ -56,7 +57,8 @@ public class Block {
                 if (code == null) {
                     code = new ArrayList<>();
                     code.add(line);
-                } else {
+                } else
+{
                     sb.append(replaceCodePart(code));
                     code = null;
                 }
@@ -68,6 +70,27 @@ public class Block {
         }
         sb.append("</Block>");
         this.html = sb.toString();
+    }
+
+    private String replace(String line, String originalSyntax, String replaceHtml){
+        while(line.contains(MDTokens.BOLD_WORD1) || line.contains(MDTokens.BOLD_WORD2) || line.contains(MDTokens.ITALIC_WORD)
+        || line.contains(MDTokens.ITALIC_WORD_2) || line.contains(MDTokens.CODE_WORD) || line.contains(MDTokens.STRIKE_WORD)){
+            line.replace()
+        }
+
+    }
+
+    /**
+     * replace all the
+     *  quate, link, image link, bold, bold italic and other mark down tags with html tags
+     * @param line
+     * @return
+     */
+    public String lineTransform(String line){
+        line = CharMatcher.
+
+        return line;
+
     }
 
 }
