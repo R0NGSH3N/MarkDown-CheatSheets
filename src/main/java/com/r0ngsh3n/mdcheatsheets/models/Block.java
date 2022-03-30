@@ -6,6 +6,7 @@ import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @Getter
@@ -72,6 +73,13 @@ public class Block {
         this.html = sb.toString();
     }
 
+    private String replaceFirst(String line, String regex, String htmlTag, Boolean openOrClose){
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(line);
+        String htmlElement = openOrClose? "<" + htmlTag + ">" : "</" + htmlTag + ">";
+        return matcher.replaceFirst(htmlElement);
+    }
+
     private String replace(String line){
         boolean isBoldWord1Found = false;
         boolean isBoldWord2Found = false;
@@ -81,10 +89,10 @@ public class Block {
         while(line.contains(MDTokens.BOLD_WORD1) || line.contains(MDTokens.BOLD_WORD2) || line.contains(MDTokens.ITALIC_WORD)
         || line.contains(MDTokens.ITALIC_WORD_2) || line.contains(MDTokens.CODE_WORD) || line.contains(MDTokens.STRIKE_WORD)){
             if(!isBoldWord1Found){
-                line = line.replaceFirst(MDTokens.BOLD_WORD1, "<strong>");
+                line = line.replaceFirst( "\\" + MDTokens.BOLD_WORD1, "<strong>");
                 isBoldWord1Found = true;
             }else{
-                line = line.replaceFirst(MDTokens.BOLD_WORD1, "</strong>");
+                line = line.replaceFirst("\\" +MDTokens.BOLD_WORD1, "</strong>");
                 isBoldWord1Found = false;
             }
             if(!isBoldWord2Found){
@@ -95,24 +103,24 @@ public class Block {
                 isBoldWord2Found = false;
             }
             if(!isItalicWord1Found){
-                line = line.replaceFirst(MDTokens.ITALIC_WORD, "<em>");
+                line = line.replaceFirst(MDTokens.ITALIC_WORD + "?", "<em>");
                 isItalicWord1Found = true;
             }else{
-                line = line.replaceFirst(MDTokens.ITALIC_WORD, "</em>");
+                line = line.replaceFirst(MDTokens.ITALIC_WORD + "?", "</em>");
                 isItalicWord1Found = false;
             }
             if(!isItalicWord2Found){
-                line = line.replaceFirst(MDTokens.ITALIC_WORD_2, "<em>");
+                line = line.replaceFirst("\\" +MDTokens.ITALIC_WORD_2, "<em>");
                 isItalicWord2Found = true;
             }else{
-                line = line.replaceFirst(MDTokens.ITALIC_WORD_2, "</em>");
+                line = line.replaceFirst("\\" +MDTokens.ITALIC_WORD_2, "</em>");
                 isItalicWord2Found = false;
             }
 
             if(!isCodeWordFound){
-                line = line.replaceFirst(MDTokens.CODE_WORD, "<code>");
+                line = line.replaceFirst("\\" +MDTokens.CODE_WORD, "<code>");
             }else{
-                line = line.replaceFirst(MDTokens.CODE_WORD, "</code>");
+                line = line.replaceFirst("\\" +MDTokens.CODE_WORD, "</code>");
             }
         }
 

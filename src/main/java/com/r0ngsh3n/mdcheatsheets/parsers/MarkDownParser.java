@@ -6,8 +6,10 @@ import com.r0ngsh3n.mdcheatsheets.models.CheatSheet;
 import com.r0ngsh3n.mdcheatsheets.models.MDTokens;
 import com.r0ngsh3n.mdcheatsheets.utils.StringTools;
 import org.apache.commons.collections4.CollectionUtils;
+import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class MarkDownParser {
@@ -60,12 +62,19 @@ public class MarkDownParser {
         //if first line is not header line...we give default headline: Cheat Sheet
         CheatSheet cheatSheet = new CheatSheet();
         boolean headLineFound = false;
-        for(String line: rawTextList){
+        for(Iterator<String> iterator = rawTextList.iterator(); iterator.hasNext();){
+            String line = iterator.next();
             if(CharMatcher.is(MDTokens.CHEAT_SHEET_HEADLINE).matchesAnyOf(line)) {
                 cheatSheet.setHeadline(rawTextList.get(0));
-                rawTextList.remove(0);
+                iterator.remove();
                 headLineFound = true;
                 break;
+            }else{
+                if(line.isBlank()){
+                    iterator.remove();
+                }else{
+                    break;
+                }
             }
         }
         if(!headLineFound){
