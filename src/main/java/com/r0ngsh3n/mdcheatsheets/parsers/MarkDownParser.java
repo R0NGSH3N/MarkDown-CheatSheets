@@ -59,10 +59,16 @@ public class MarkDownParser {
         //first line always Headline for the cheat sheet
         //if first line is not header line...we give default headline: Cheat Sheet
         CheatSheet cheatSheet = new CheatSheet();
-        if(CharMatcher.is(MDTokens.CHEAT_SHEET_HEADLINE).matchesAnyOf(rawTextList.get(0))){
-            cheatSheet.setHeadline(rawTextList.get(0));
-            rawTextList.remove(0);
-        }else{
+        boolean headLineFound = false;
+        for(String line: rawTextList){
+            if(CharMatcher.is(MDTokens.CHEAT_SHEET_HEADLINE).matchesAnyOf(line)) {
+                cheatSheet.setHeadline(rawTextList.get(0));
+                rawTextList.remove(0);
+                headLineFound = true;
+                break;
+            }
+        }
+        if(!headLineFound){
             cheatSheet.setHeadline("#CHEAT SHEET");
         }
 

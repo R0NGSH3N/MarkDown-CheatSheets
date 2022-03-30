@@ -65,32 +65,59 @@ public class Block {
             } else if (line.startsWith("#")) {
                 sb.append(replaceHeadLine(line));
             }else{
-                sb.append(line);
+                sb.append(replace(line));
             }
         }
         sb.append("</Block>");
         this.html = sb.toString();
     }
 
-    private String replace(String line, String originalSyntax, String replaceHtml){
+    private String replace(String line){
+        boolean isBoldWord1Found = false;
+        boolean isBoldWord2Found = false;
+        boolean isItalicWord1Found = false;
+        boolean isItalicWord2Found = false;
+        boolean isCodeWordFound = false;
         while(line.contains(MDTokens.BOLD_WORD1) || line.contains(MDTokens.BOLD_WORD2) || line.contains(MDTokens.ITALIC_WORD)
         || line.contains(MDTokens.ITALIC_WORD_2) || line.contains(MDTokens.CODE_WORD) || line.contains(MDTokens.STRIKE_WORD)){
-            line.replace()
+            if(!isBoldWord1Found){
+                line = line.replaceFirst(MDTokens.BOLD_WORD1, "<strong>");
+                isBoldWord1Found = true;
+            }else{
+                line = line.replaceFirst(MDTokens.BOLD_WORD1, "</strong>");
+                isBoldWord1Found = false;
+            }
+            if(!isBoldWord2Found){
+                line = line.replaceFirst(MDTokens.BOLD_WORD2, "<strong>");
+                isBoldWord2Found = true;
+            }else{
+                line = line.replaceFirst(MDTokens.BOLD_WORD2, "</strong>");
+                isBoldWord2Found = false;
+            }
+            if(!isItalicWord1Found){
+                line = line.replaceFirst(MDTokens.ITALIC_WORD, "<em>");
+                isItalicWord1Found = true;
+            }else{
+                line = line.replaceFirst(MDTokens.ITALIC_WORD, "</em>");
+                isItalicWord1Found = false;
+            }
+            if(!isItalicWord2Found){
+                line = line.replaceFirst(MDTokens.ITALIC_WORD_2, "<em>");
+                isItalicWord2Found = true;
+            }else{
+                line = line.replaceFirst(MDTokens.ITALIC_WORD_2, "</em>");
+                isItalicWord2Found = false;
+            }
+
+            if(!isCodeWordFound){
+                line = line.replaceFirst(MDTokens.CODE_WORD, "<code>");
+            }else{
+                line = line.replaceFirst(MDTokens.CODE_WORD, "</code>");
+            }
         }
 
-    }
-
-    /**
-     * replace all the
-     *  quate, link, image link, bold, bold italic and other mark down tags with html tags
-     * @param line
-     * @return
-     */
-    public String lineTransform(String line){
-        line = CharMatcher.
-
         return line;
-
     }
+
 
 }
