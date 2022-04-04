@@ -16,7 +16,7 @@ public class MDTokens {
     public static final String UNORDERED_LIST3 = "+ ";
     public static final String TODO_LIST_UNCHECKED = "[ ]";
     public static final String TODO_LIST_CHECKED = "[x]";
-    public static final String BOLD_WORD1 = "**";
+    public static final String BOLD_WORD1 = "\\*\\*";
     public static final String BOLD_WORD2 = "\\_\\_";
     public static final String ITALIC_WORD = "\\_";
     public static final String ITALIC_WORD_2 = "*";

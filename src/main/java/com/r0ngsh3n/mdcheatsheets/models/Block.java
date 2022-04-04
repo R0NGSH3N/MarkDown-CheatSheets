@@ -1,11 +1,13 @@
 package com.r0ngsh3n.mdcheatsheets.models;
 
 import com.google.common.base.CharMatcher;
+import com.google.common.collect.ImmutableMap;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -86,13 +88,14 @@ public class Block {
         boolean isItalicWord1Found = false;
         boolean isItalicWord2Found = false;
         boolean isCodeWordFound = false;
-        while(line.contains(MDTokens.BOLD_WORD1) || line.contains(MDTokens.BOLD_WORD2) || line.contains(MDTokens.ITALIC_WORD)
-        || line.contains(MDTokens.ITALIC_WORD_2) || line.contains(MDTokens.CODE_WORD) || line.contains(MDTokens.STRIKE_WORD)){
+        Map<String, String> TwoCharMap= ImmutableMap.of("**", "<strong>", "__", "<strong>", "_", "<em>", "~~", "<del>", "`", "<code>");
+        Map<String, String> OneCharMap= ImmutableMap.of("_", "<em>", "*", "<em>", "`", "<code>");
+        while(line.contains("**") || line.contains("__") || line.contains(MDTokens.CODE_WORD) || line.contains(MDTokens.STRIKE_WORD)){
             if(!isBoldWord1Found){
-                line = line.replaceFirst( "\\" + MDTokens.BOLD_WORD1, "<strong>");
+                line = line.replaceFirst(MDTokens.BOLD_WORD1, "<strong>");
                 isBoldWord1Found = true;
             }else{
-                line = line.replaceFirst("\\" +MDTokens.BOLD_WORD1, "</strong>");
+                line = line.replaceFirst(MDTokens.BOLD_WORD1, "</strong>");
                 isBoldWord1Found = false;
             }
             if(!isBoldWord2Found){
@@ -102,11 +105,20 @@ public class Block {
                 line = line.replaceFirst(MDTokens.BOLD_WORD2, "</strong>");
                 isBoldWord2Found = false;
             }
+
+            if(!isCodeWordFound){
+                line = line.replaceFirst("\\" +MDTokens.CODE_WORD, "<code>");
+            }else{
+                line = line.replaceFirst("\\" +MDTokens.CODE_WORD, "</code>");
+            }
+        }
+
+        while(line.contains(MDTokens.ITALIC_WORD_2) || line.contains(MDTokens.ITALIC_WORD)){
             if(!isItalicWord1Found){
-                line = line.replaceFirst(MDTokens.ITALIC_WORD + "?", "<em>");
+                line = line.replaceFirst(MDTokens.ITALIC_WORD,  "<em>");
                 isItalicWord1Found = true;
             }else{
-                line = line.replaceFirst(MDTokens.ITALIC_WORD + "?", "</em>");
+                line = line.replaceFirst(MDTokens.ITALIC_WORD,"</em>");
                 isItalicWord1Found = false;
             }
             if(!isItalicWord2Found){
@@ -116,16 +128,9 @@ public class Block {
                 line = line.replaceFirst("\\" +MDTokens.ITALIC_WORD_2, "</em>");
                 isItalicWord2Found = false;
             }
-
-            if(!isCodeWordFound){
-                line = line.replaceFirst("\\" +MDTokens.CODE_WORD, "<code>");
-            }else{
-                line = line.replaceFirst("\\" +MDTokens.CODE_WORD, "</code>");
-            }
         }
 
         return line;
     }
-
 
 }
