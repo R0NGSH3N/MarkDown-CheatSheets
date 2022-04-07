@@ -11,6 +11,8 @@ import org.springframework.util.StringUtils;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class MarkDownParser {
 
@@ -31,13 +33,11 @@ public class MarkDownParser {
         List<Block> blocks = new ArrayList<>();
         for(String line: rawText){
             if(CharMatcher.anyOf(MDTokens.BLOCK_HEADLINE).matchesAnyOf(line)){
-                if(blockText == null){
-                    blockText = new ArrayList<>();
-                    blockText.add(line);
-                }else{
+                if(blockText != null){
                     blocks.add(createBlock(blockText));
-                    blockText = null;
                 }
+                blockText = new ArrayList<>();
+                blockText.add(line);
             }else{
                 if(blockText != null){
                     blockText.add(line);
@@ -58,6 +58,7 @@ public class MarkDownParser {
             return null;
         }
 
+        Block headLineBlock = new Block();
         //first line always Headline for the cheat sheet
         //if first line is not header line...we give default headline: Cheat Sheet
         CheatSheet cheatSheet = new CheatSheet();
@@ -65,7 +66,9 @@ public class MarkDownParser {
         for(Iterator<String> iterator = rawTextList.iterator(); iterator.hasNext();){
             String line = iterator.next();
             if(CharMatcher.is(MDTokens.CHEAT_SHEET_HEADLINE).matchesAnyOf(line)) {
-                cheatSheet.setHeadline(rawTextList.get(0));
+                headLineBlock.setRawText(Stream.of(rawTextList.get(0)).collect(Collectors.toList()));
+                headLineBlock.transform();
+                cheatSheet.setHeadline(headLineBlock);
                 iterator.remove();
                 headLineFound = true;
                 break;
@@ -78,7 +81,9 @@ public class MarkDownParser {
             }
         }
         if(!headLineFound){
-            cheatSheet.setHeadline("#CHEAT SHEET");
+            headLineBlock.setRawText(Stream.of("#CHEAT SHEET").collect(Collectors.toList()));
+            headLineBlock.transform();
+            cheatSheet.setHeadline(headLineBlock);
         }
 
         List<Block> blocks = parseBlocks(rawTextList);

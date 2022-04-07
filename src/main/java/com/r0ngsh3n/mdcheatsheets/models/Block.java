@@ -36,7 +36,7 @@ public class Block {
 
     private String replaceHeadLine(String headLine) {
         int level = CharMatcher.is('#').countIn(headLine);
-        return String.format("<h%d>%s</h%d>", level, headLine, level);
+        return String.format("<h%d>%s</h%d>", level, headLine, level).replaceAll("#","");
     }
 
     private String replaceQuote(String quoted) {

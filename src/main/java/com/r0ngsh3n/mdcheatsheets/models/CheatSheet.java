@@ -9,6 +9,14 @@ import java.util.List;
 @Setter
 public class CheatSheet {
 
-    private String headline;
+    private Block headline;
     private List<Block> blocks;
+
+    @Override
+    public String toString(){
+        StringBuilder sb = new StringBuilder();
+        sb.append(headline.getHtml());
+        blocks.stream().forEach(block -> sb.append(block.getHtml()));
+        return sb.toString();
+    }
 }
