@@ -3,12 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <Style>
+    /** h2 height: 34, each normal text is 22 **/
+
+    table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 1200px;
+  height: 916px;
+}
+td, th {
+  width: 320px;
+  border: 1px solid #dddddd;
+  padding: 8px;
+  vertical-align: top;
+}
         .grid-container{
             display: grid;
             /** width: 1054, each column is 200 px **/
-            grid-template-columns: repeat(4, 300px);
+            grid-template-columns: 300px;
             /**height: 816, 150 px minimum block **/
-            grid-template-rows: minmax(150px, auto)
+            grid-template-rows: minmax(150px, auto);
             column-gap: 10px;
             row-gap: 10px;
         }
@@ -22,12 +36,96 @@
         .wrap{
             word-break: break-all !important;
         }
+
     </Style>
 </head>
 <body>
+
+<table>
+    <tr>
+        <td>
+            <div class="grid-container">
+                <div class="grid-item">
+                    <h2> block1 title </h2>This is <strong>Content</strong> of block1, here is <strong>Italic</strong>
+                    <div class="wrap">
+                        kjdsf;lakjdf;aljk
+                        ;aldjkf;asdlkjfa;dslkfj
+                        ;alksdjf;asdlkjf;asdlkfj
+                        ;lakjsdf;ldkasjfasd
+                        ;lakjsdf;ladskjf;aldskjf
+                        ;lakjsdf;ldkasjf;lakdsjf;alsdkj
+                        ;laskdjf;asdlkfj;asldkjf;aslkdjf;
+                        alskdjf;asd
+                        ;asldkjf;asldkfja;sldkfja;sdlkfjas;dlkfjasd;lfkjasd;flkasjdf;lkasjd
+                        asd;flkjasd;flkjasd;flkjdas;flkajds;flkjasd;flkajsd;flkjadsfla
+                    </div>
+                </div>
+                <div class="grid-item">
+                    <h2> block2 title </h2>
+                    this is block 2
+                </div>
+            </div>
+        </td>
+        <td>
+            <div class="grid-container">
+                <div class="grid-item">
+                    <h2> block3 title </h2>This is <strong>Content</strong> of block3, here is <strong>Italic</strong>
+                </div>
+                <div class="grid-item">
+                    <h2> block4 title </h2>
+                    this is block 4
+                </div>
+                <div class="grid-item">
+                    <h2> block5 title </h2>
+                    this is block 5
+                </div>
+            </div>
+        <td>
+            <div class="grid-container">
+                <div class="grid-item">
+                    <h2> block6 title </h2>This is <strong>Content</strong> of block6, here is <strong>Italic</strong>
+                </div>
+                <div class="grid-item">
+                    <h2> block7 title </h2>
+                    this is block 7
+                </div>
+            </div>
+        </td>
+        <td>
+            <div class="grid-container">
+                <div class="grid-item">
+                    <h2> block8 title </h2>This is <strong>Content</strong> of block8, here is <strong>Italic</strong>
+                    <div class="wrap">
+                        kjdsf;lakjdf;aljk
+                        ;aldjkf;asdlkjfa;dslkfj
+                        ;alksdjf;asdlkjf;asdlkfj
+                        ;lakjsdf;ldkasjfasd
+                        ;asldkjf;asldkfja;sldkfja;sdlkfjas;dlkfjasd;lfkjasd;flkasjdf;lkasjd
+                        asd;flkjasd;flkjasd;flkjdas;flkajds;flkjasd;flkajsd;flkjadsfla
+                    </div>
+                </div>
+                <div class="grid-item">
+                    <h2> block9 title </h2>
+                    this is block 9
+                </div>
+                <div class="grid-item">
+                    <h2> block10 title </h2>
+                    this is block 10
+                </div>
+                <div class="grid-item">
+                    <h2> block11 title </h2>
+                    this is block 11
+                </div>
+            </div>
+        </td>
+    </tr>
+</table>
+<!--
 <div class="grid-container">
     <! -- first line -- >
     <div class="grid-item">
+        <table>
+            <tr><td>
         <h2> block1 title </h2>This is <strong>Content</strong> of block1, here is <strong>Italic</strong>
         <div class="wrap">
         kjdsf;lakjdf;aljk
@@ -41,20 +139,19 @@
         ;asldkjf;asldkfja;sldkfja;sdlkfjas;dlkfjasd;lfkjasd;flkasjdf;lkasjd
         asd;flkjasd;flkjasd;flkjdas;flkajds;flkjasd;flkajsd;flkjadsfla
         </div>
-
-    </div>
-    <div class=" grid-item">
-        <h2> block2 title </h2>this is block 2
-    </div>
-    <div class="grid-item">
-        <h2> block3 title</h2>this is block 3
-    </div>
-    <div class="grid-item">
-        <h2> block3 title</h2>this is block 3
+            </td></tr>
+            <tr><td>
+        <div>
+            </td></tr>
+        </table>
     </div>
 
+
     <div class="grid-item">
-        <h2> block3 title</h2>this is block 3
+        <h2> block4 title</h2>this is block 4
+    </div>
+    <div class="grid-item">
+        <h2> block5 title</h2>this is block 3
     </div>
     <div class="grid-item">
         <h2> block3 title</h2>this is block 3
@@ -84,11 +181,9 @@
         <h2> block3 title</h2>this is block 3
     </div>
     <div class="grid-item">
-        <h2> block3 title</h2>this is block 3
-    </div>
-    <div class="grid-item">
-        <h2> block3 title</h2>this is block 3
+        <h2> block12 title</h2>this is block 12
     </div>
 </div>
+-->
 </body>
 </html>
