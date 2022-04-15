@@ -2,56 +2,46 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.2.1/jquery.min.js"></script>
     <Style>
-        * { box-sizing: border-box; }
-
-body { font-family: sans-serif; }
-
-/* ---- grid ---- */
-
-.grid {
-  background: #EEE;
-  max-width: 1200px;
-}
-
-/* clearfix */
-.grid:after {
-  content: '';
-  display: block;
-  clear: both;
-}
-
-/* ---- grid-item ---- */
-
-.grid-item {
-  width: 320px;
-  height: auto;
-  float: left;
-<!--  background: #D26;-->
-  border: 2px solid #333;
-  border-color: hsla(0, 0%, 0%, 0.5);
-  border-radius: 5px;
-}
-
-.grid-item--width2 { width: 320px; }
-.grid-item--width3 { width: 480px; }
-.grid-item--width4 { width: 640px; }
-
-.grid-item--height2 { height: 200px; }
-.grid-item--height3 { height: 260px; }
-.grid-item--height4 { height: 360px; }
+        .grid-container{
+            display: grid;
+            /** width: 1054, each column is 200 px **/
+            grid-template-columns: repeat(4, 300px);
+            /**height: 816, 150 px minimum block **/
+            grid-template-rows: minmax(150px, auto)
+            column-gap: 10px;
+            row-gap: 10px;
+        }
+        .grid-item{
+            background-color: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            font-size: 20px;
+            <!--  text-align: center;-->
+        }
+        .wrap{
+            word-break: break-all !important;
+        }
     </Style>
 </head>
 <body>
-<div class="grid">
+<div class="grid-container">
     <! -- first line -- >
-    <div class=".grid-item--width2">
-        <h1> Cheat Sheet </h1>
-    </div>
     <div class="grid-item">
         <h2> block1 title </h2>This is <strong>Content</strong> of block1, here is <strong>Italic</strong>
+        <div class="wrap">
+        kjdsf;lakjdf;aljk
+        ;aldjkf;asdlkjfa;dslkfj
+        ;alksdjf;asdlkjf;asdlkfj
+        ;lakjsdf;ldkasjfasd
+        ;lakjsdf;ladskjf;aldskjf
+        ;lakjsdf;ldkasjf;lakdsjf;alsdkj
+        ;laskdjf;asdlkfj;asldkjf;aslkdjf;
+        alskdjf;asd
+        ;asldkjf;asldkfja;sldkfja;sdlkfjas;dlkfjasd;lfkjasd;flkasjdf;lkasjd
+        asd;flkjasd;flkjasd;flkjdas;flkajds;flkjasd;flkajsd;flkjadsfla
+        </div>
+
     </div>
     <div class=" grid-item">
         <h2> block2 title </h2>this is block 2
@@ -59,57 +49,46 @@ body { font-family: sans-serif; }
     <div class="grid-item">
         <h2> block3 title</h2>this is block 3
     </div>
-    <! -- second line -- >
     <div class="grid-item">
-        <p>this is first grid?!</p>
-        <img>
-    </div>
-    <div class="grid-item">
-        <p>this is first grid?!</p>
-        <img>
-    </div>
-    <div class="grid-item">
-        <p>this is first grid?!</p>
-        <img>
-    </div>
-    <div class="grid-item">
-        <p>this is first grid?!</p>
-        <img>
-        <img>
-    </div>
-    <! -- third line -- >
-    <div class="grid-item">
-        <img>
-    </div>
-    <div class="grid-item">
-        <img>
+        <h2> block3 title</h2>this is block 3
     </div>
 
-    <div class="grid-item ">
-        <p>this is first grid?!</p>
-        <img>
-        <img>
+    <div class="grid-item">
+        <h2> block3 title</h2>this is block 3
     </div>
     <div class="grid-item">
-        <img>
+        <h2> block3 title</h2>this is block 3
     </div>
     <div class="grid-item">
-        <img>
+        <h2> block3 title</h2>this is block 3
     </div>
     <div class="grid-item">
-        <img>
+        <h2> block3 title</h2>this is block 3
     </div>
-
+    <div class="grid-item">
+        <h2> block3 title</h2>this is block 3
+    </div>
+    <div class="grid-item">
+        <h2> block3 title</h2>this is block 3
+    </div>
+    <div class="grid-item">
+        <h2> block3 title</h2>this is block 3
+    </div>
+    <div class="grid-item">
+        <h2> block3 title</h2>this is block 3
+    </div>
+    <div class="grid-item">
+        <h2> block3 title</h2>this is block 3
+    </div>
+    <div class="grid-item">
+        <h2> block3 title</h2>this is block 3
+    </div>
+    <div class="grid-item">
+        <h2> block3 title</h2>this is block 3
+    </div>
+    <div class="grid-item">
+        <h2> block3 title</h2>this is block 3
+    </div>
 </div>
 </body>
-<script>
-$('.grid').isotope({
-  itemSelector: '.grid-item',
-  masonry: {
-    columnWidth: 100,
-<!--    horizontalOrder: true,-->
-  }
-})
-
-</script>
 </html>
